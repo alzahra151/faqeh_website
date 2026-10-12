@@ -1,0 +1,45 @@
+// ::ng-deep .ngxImageZoomThumbnail{
+// width: 60%;
+// }
+// ::ng-deep .ngxImageZoomContainer {
+//   max-height: 700px;
+//   max-width: 500px;
+// }
+// ::ng-deep .ngxImageZoomContainer > img{
+// //   max-height: 90vh;
+//     max-width: 500%;  
+// }
+// // ::ng-deep .ngxImageZoomFullContainer{
+// //   max-height: 700px;
+// //   max-width: 500px;
+// // }
+// ::ng-deep .ngxImageZoomContainer > img{
+// //   max-height: 90vh;
+//     max-width: 500%;  
+// }
+// ::ng-deep .ngxImageZoomContainer  .ngxImageZoomFull{
+// //   max-height: 90vh;
+//     max-width: 500%;   
+// } 
+//   ::ng-deep .ngxImageZoomContainer {
+//     width: 100% !important;
+//   }
+
+//   ::ng-deep .ngxImageZoomThumbnail {
+//     width: 100% !important;
+//   }
+::ng-deep .ngxImageZoomContainer {
+  max-height: 600px;
+//   background-color: red;
+  max-width:500px ;
+}
+::ng-deep .ngxImageZoomContainer>img {
+  max-height:100%;
+//   background-color: red;
+//   max-width:100% ;
+}
+::ng-deep .ngxImageZoomFullContainer .ngxImageZoomLensEnabled .ngxImageZoomFull{
+    max-height:100%;
+//   background-color: rgb(16, 13, 187);
+//   max-width:100% ;  
+}

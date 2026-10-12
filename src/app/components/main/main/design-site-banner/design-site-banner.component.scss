@@ -1,0 +1,11 @@
+.text-position{
+position: absolute;
+top: 35%;
+right:5%;
+}
+@media screen and (max-width:762px) {
+  .text-position{
+font-size: 1.8rem;
+
+}  
+}

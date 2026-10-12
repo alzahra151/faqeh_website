@@ -1,0 +1,74 @@
+<div class="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-1 px-12 py-3 gap-6">
+    <div class="col-span-1" data-modal-target="small-modal" data-modal-toggle="small-modal">
+        <img src="/images/story page/Pic4.png" (click)="open('/images/story page/Pic4.png')">
+    </div>
+    <div class="col-span-1" data-modal-target="small-modal" data-modal-toggle="small-modal">
+        <img src="/images/story page/Pic5.png" (click)="open('/images/story page/Pic5.png')">
+    </div>
+    <div class="col-span-1" data-modal-target="small-modal" data-modal-toggle="small-modal">
+        <img src="/images/story page/Pic6.png" (click)="open('/images/story page/Pic6.png')">
+    </div>
+    <div class="col-span-1" data-modal-target="small-modal" data-modal-toggle="small-modal">
+        <img src="/images/story page/Pic7.png" (click)="open('/images/story page/Pic7.png')">
+    </div>
+    <div class="col-span-1"  data-modal-target="small-modal" data-modal-toggle="small-modal">
+        <img src="/images/story page/Pic8.png" (click)="open('/images/story page/Pic8.png')">
+    </div>
+    <div class="col-span-1" data-modal-target="small-modal" data-modal-toggle="small-modal">
+        <img src="/images/story page/Pic9.png" (click)="open('/images/story page/Pic9.png')">
+    </div>
+    <div class="col-span-1" data-modal-target="small-modal" data-modal-toggle="small-modal">
+        <img src="/images/story page/Pic10.png" (click)="open('/images/story page/Pic10.png')">
+    </div>
+    <div class="col-span-1" data-modal-target="small-modal" data-modal-toggle="small-modal">
+        <img src="/images/story page/Pic11.png" (click)="open('/images/story page/Pic11.png')">
+    </div>
+    <div class="col-span-1" data-modal-target="small-modal" data-modal-toggle="small-modal">
+        <img src="/images/story page/Pic12.png" (click)="open('/images/story page/Pic12.png')">
+    </div>
+    <div class="col-span-1" data-modal-target="small-modal" data-modal-toggle="small-modal">
+        <img src="/images/story page/Pic13.png" (click)="open('/images/story page/Pic13.png')">
+    </div>
+</div>
+
+<div id="small-modal" tabindex="-1"
+    class="fixed top-0 left-0 right-0 z-50 hidden w-full bg-black bg-opacity-50 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative  max-w-md max-h-full">
+        <!-- Modal content -->
+        <div class="relative bg-black  shadow dark:bg-gray-700">
+            <!-- Modal header -->
+            <div class="flex items-center justify-between p-3   rounded-t dark:border-gray-600">
+               
+                <button type="button"
+                    class="text-white bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg p-3 text-sm  ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                    data-modal-hide="small-modal">
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+            </div>
+            <!-- Modal body -->
+            <!-- @if(isOpen){ -->
+            <div class=" space-y-4 p-4">
+                <lib-ngx-image-zoom [thumbImage]="myThumbnail" [circularLens]="true" 
+                    [fullImage]="myFullresImage" [magnification]="1.2" [enableScrollZoom]="false" [enableLens]="true"
+                    [lensWidth]="150" [lensHeight]="150"></lib-ngx-image-zoom>
+                <!-- <div class="img-magnifier-container">
+                        <img #myimage [src]="myThumbnail" alt="Zoomable Image" class="magnify-img" />
+                    </div> -->
+            </div>
+        <!-- } -->
+            <!-- Modal footer -->
+            <!-- <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+                <button data-modal-hide="small-modal" type="button"
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">I
+                    accept</button>
+                <button data-modal-hide="small-modal" type="button"
+                    class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Decline</button>
+            </div> -->
+        </div>
+    </div>
+</div>

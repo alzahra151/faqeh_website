@@ -1,0 +1,91 @@
+.background-container-banner{
+    background-image: url('/images/banner.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 30px;
+  min-height: 50rem;
+//   background-color: black;
+  color: white; /* Optional: change text color to ensure it's visible on the background */ 
+}
+.fram-caontainer{
+    height: 40rem;
+}
+.img-frame{
+position: absolute;
+top: 7%;
+left: 10%;
+ height: 84%;
+ max-width: 100%;
+// top: 10%;
+bottom: 7%;
+// right: -10;
+}
+p{
+    font-family: arabicFont !important;
+}
+.background-container-small-banner{
+    background-image: url('/images/Panner1.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 20;
+  padding: 30px;
+  color: white; /* Optional: change text color to ensure it's visible on the background */ 
+}
+.text-note1{
+    position: absolute;
+    top: 30%;
+    bottom:30% ;
+    height:40% ;
+    right: 10%;
+    left: 60%;
+}
+.background-container-banner-full{
+    background-image: url('/images/Pic24.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 20;
+  padding: 30px;
+  min-height: 40rem;
+  color: white; /* Optional: change text color to ensure it's visible on the background */ 
+}
+.text-note2{
+    position: absolute;
+    top: -10%;
+     right: 72%;
+    left: 3%;
+}
+@media screen and (max-width:1024px) {
+  .background-container-small-banner{
+    background-image: url('/images/Panner1.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 20;
+  padding: 30px;
+//   height: 40%;
+  color: white; /* Optional: change text color to ensure it's visible on the background */ 
+}
+.text-note1{
+    position: absolute;
+    top: 20%;
+    bottom:20% ;
+    height:60% ;
+    right: 5%;
+    left: 10%;
+}  
+.fram-caontainer{
+    height: 40rem;
+}
+.text-size{
+    font-size: .9rem;
+}
+.text-note2{
+    position: absolute;
+    top: 15%;
+     right: 3%;
+    left: 3%;
+}
+}

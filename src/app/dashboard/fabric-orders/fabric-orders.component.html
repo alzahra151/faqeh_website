@@ -1,0 +1,41 @@
+<app-hero-navbar [navImageUrl]="currentNavImage"></app-hero-navbar>
+
+<div class="mt-28 p-4">
+    - <table dir="rtl">
+        <caption class="text-white">الامتحانات</caption>
+        <thead>
+            <tr>
+                <th scope="col">اسم العميل </th>
+                <th scope="col">الجوال </th>
+                <th scope="col">نوع القماش</th>
+                <th scope="col"> لون القماش </th>
+                <th scope="col"> التفاصيل</th>
+                <!-- <th scope="col"> الاجابة</th> -->
+            </tr>
+
+        </thead>
+        <tbody>
+            @for(element of data ;track element.id){
+
+            <tr>
+
+                <td scope="row" data-label="الاسم">{{element.user_name}}</td>
+                <td data-label="الجوال">{{element.user_mobile}}</td>
+                <td data-label="نوع القماش">{{element.fabric_season }}</td>
+                <td data-label=" اللون">{{element.fabric_color }}</td>
+                <td data-label="التفاصيل" class="flex justify-center ">
+                    <a [routerLink]="['/admin-login/orders',1]">
+                        <svg  routerLinkActive="router-link-active"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="brown" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                        </svg>
+                    </a>
+                </td>
+            </tr>
+            }
+           
+        </tbody>
+    </table>
+</div>

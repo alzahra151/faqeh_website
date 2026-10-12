@@ -1,0 +1,60 @@
+.background-container {
+  background-image: url('/images/Background1.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 30px;
+  min-height: 30rem;
+//   background-color: black;
+  color: white; /* Optional: change text color to ensure it's visible on the background */
+}
+.fram-caontainer{
+    height: auto;
+}
+// .img-frame{
+// position: absolute;
+// top: 7%;
+// left: 10%;
+//  height: auto;
+//     max-width: auto;
+// // top: 10%;
+// bottom: -10%;
+// right: -10;
+// }
+.img-frame{
+  z-index: 20 !important;
+}
+.frame{
+  position: absolute;
+  top: -3%;
+  // left: -10%;
+  left: -5%;
+  width: 90%;
+  height: 95%;
+  z-index: 1;
+  // bottom: 10%;
+}
+p{
+    font-family: arabicFont !important;
+}
+.background-container-banner{
+    background-image: url('/images/Pic8.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 30px;
+  min-height: 55rem;
+//   background-color: black;
+  color: white; /* Optional: change text color to ensure it's visible on the background */ 
+}
+.text-weight{
+    font-size: 8rem;
+}
+@media screen  and (max-width:762px){
+    .fram-caontainer{
+    height: 28rem;
+}
+.text-weight{
+    font-size: 5rem;
+}
+}

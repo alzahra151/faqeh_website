@@ -1,0 +1,712 @@
+<app-hero-navbar [navImageUrl]="currentNavImage"></app-hero-navbar>
+<div class="grid grid-cols-1 lg:mx-8 pb-5">
+    <div class="col-span-1">
+
+        <mat-stepper headerPosition="bottom" #stepper>
+
+            <mat-step [stepControl]="firstFormGroup">
+                <form>
+                    <div class="grid grid-cols-12 lg:p-20  mt-20 contain">
+                        <div class="col-span-12 ">
+                            <span class="ps-20  font-bold">اختر قماشك بنفسك في نظام فقيه الذكي</span>
+                            <h6 class="bg-gray-200 p-2 mt-10 ps-20">
+                                اختيار القماش
+                            </h6>
+                        </div>
+                        <div class="col-span-12">
+                            @for(item of filterData ;track item){
+                            <div class="grid grid-cols-11 mt-8 text-center">
+                                <div class="md:col-span-3 col-span-6 p-2  text-center">
+                                    <h3 class="font-semibold text-center">القماش</h3>
+                                    <div class="flex flex-col  items-center mt-20">
+                                        <div class="text-lg">قيمة الاضافة</div>
+                                        <div class="text-lg font-bold"> {{selectedFabric?.price}} ريال</div>
+                                    </div>
+                                    <div class="flex flex-col  items-center mt-20">
+                                        <div class="text-lg"> اجمالي القيمة</div>
+                                        <div class="text-lg font-bold"> {{selectedFabric?.price}} ريال</div>
+                                    </div>
+                                </div>
+
+                                <div class="md:col-span-2 col-span-5 p-2 ">
+                                    <div class="flex flex-col  gap-4 border-r-2 border-gray-200 p-2">
+                                        @for(season of item.fabric.seasons ;track season){
+                                        <div class="flex items-center mb-4">
+                                            <input id="season" type="radio" [value]="season" name="season"
+                                                [(ngModel)]="selectedSeason" (change)="applyFabricFilters()"
+                                                class="w-4 h-4 text-gray-600 bg-gray-200 border-gray-300 focus:ring-gray-400">
+                                            <label for="season"
+                                                class="ms-2 text-lg font-medium text-gray-900 dark:text-gray-300">{{season}}</label>
+
+                                        </div>
+                                        }
+                                        <!-- {{selectedSeason}} -->
+                                    </div>
+                                    <div class="flex flex-col  gap-4 border-r-2 border-gray-200 p-2 mt-14">
+                                        @for(color of item.fabric.colors ;track color){
+                                        <div class="flex items-center mb-4">
+                                            <input id="color" type="radio" [value]="color" name="color"
+                                                [(ngModel)]="selectedColor" (change)="applyFabricFilters()"
+                                                class="w-4 h-4 text-gray-600 bg-gray-200 border-gray-300 focus:ring-gray-400">
+                                            <label for="color"
+                                                class="ms-2 text-lg font-medium text-gray-900 dark:text-gray-300">{{color}}</label>
+                                        </div>
+                                        }
+                                    </div>
+                                    <!-- <div class="flex flex-col  gap-4 border-r-2 border-gray-200 p-2 mt-14">
+                                        @for(material of item.fabric.materials ;track material){
+                                        <div class="flex items-center mb-4">
+                                            <input id="color" type="radio" [value]="material" name="material"
+                                                [(ngModel)]="selectedMaterial" (change)="applyFabricFilters()"
+                                                class="w-4 h-4 text-gray-600 bg-gray-200 border-gray-300 focus:ring-gray-400">
+                                            <label for="color"
+                                                class="ms-2 text-lg font-medium text-gray-900 dark:text-gray-300">{{material}}</label>
+                                        </div>
+                                        }
+                                    </div> -->
+                                </div>
+
+                                <div class="md:col-span-6 col-span-11 p-2 ">
+                                    <div class="grid grid-cols-2 gap-8 ">
+                                        @for (item of filteredFabrics ; track $index) {
+                                        <div class="col-span-1 container ">
+                                            <div class="image-wrapper">
+                                                <img [src]="item.image.src" alt="Example Image" />
+                                                <span class="description">{{item.image.describe}}</span>
+                                                <input [(ngModel)]="selectedFabric" [value]="item" type="radio"
+                                                    class="radio-btn w-6 h-6  text-gray-600 bg-white border-gray-300 focus:ring-gray-400"
+                                                    name="image" />
+                                            </div>
+                                        </div>
+                                        }
+                                        <!-- {{selectedFabric | json}} -->
+                                    </div>
+                                </div>
+                            </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="rounded-full  border-4 border-black p-2 grid grid-cols-5 mx-10">
+                        <div class="col-span-3  flex justify-center items-center">
+                            <button mat-button matStepperNext>
+                                <div class="size-20 rounded-full bg-black flex justify-center items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"
+                                        class="size-14">
+                                        <path fill-rule="evenodd"
+                                            d="M13.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L11.69 12 4.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
+                                            clip-rule="evenodd" />
+                                        <path fill-rule="evenodd"
+                                            d="M19.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 1 1-1.06-1.06L17.69 12l-6.97-6.97a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </button>
+                            <button mat-button matStepperPrevious>
+                                <div class="size-20 rounded-full bg-black flex justify-center items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"
+                                        class="size-14">
+                                        <path fill-rule="evenodd"
+                                            d="M10.72 11.47a.75.75 0 0 0 0 1.06l7.5 7.5a.75.75 0 1 0 1.06-1.06L12.31 12l6.97-6.97a.75.75 0 0 0-1.06-1.06l-7.5 7.5Z"
+                                            clip-rule="evenodd" />
+                                        <path fill-rule="evenodd"
+                                            d="M4.72 11.47a.75.75 0 0 0 0 1.06l7.5 7.5a.75.75 0 1 0 1.06-1.06L6.31 12l6.97-6.97a.75.75 0 0 0-1.06-1.06l-7.5 7.5Z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </button>
+
+                        </div>
+                        <div class="col-span-2  flex justify-center cursor-pointer" routerLink="/">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                class="size-20">
+                                <path
+                                    d="M11.47 3.841a.75.75 0 0 1 1.06 0l8.69 8.69a.75.75 0 1 0 1.06-1.061l-8.689-8.69a2.25 2.25 0 0 0-3.182 0l-8.69 8.69a.75.75 0 1 0 1.061 1.06l8.69-8.689Z" />
+                                <path
+                                    d="m12 5.432 8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 0 1-.75-.75v-4.5a.75.75 0 0 0-.75-.75h-3a.75.75 0 0 0-.75.75V21a.75.75 0 0 1-.75.75H5.625a1.875 1.875 0 0 1-1.875-1.875v-6.198a2.29 2.29 0 0 0 .091-.086L12 5.432Z" />
+                            </svg>
+                        </div>
+                        <!-- <div class="col-span-1 flex justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-20" viewBox="0 0 24 24">
+                                <path d="M0 0h24v24H0z" fill="none" />
+                                <path
+                                    d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z" />
+                            </svg>
+                        </div> -->
+
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step optional>
+                <form>
+                    <ng-template matStepLabel>Fill out your address</ng-template>
+                    <div class="grid grid-cols-12 lg:p-20  mt-20 contain">
+                        <div class="col-span-12 ">
+
+                            <h6 class="bg-gray-200 p-2 mt-10 ps-20">
+                                اختيار الموديل
+                            </h6>
+                        </div>
+                        <div class="col-span-12">
+                            @for(item of filterData ;track item){
+                            <div class="grid grid-cols-11 mt-8 text-center">
+                                <div class="col-span-3 p-2  text-center md:block hidden">
+                                    <div class="flex flex-col  items-center mt-20">
+                                        <div class="text-lg">قيمة الاضافة</div>
+                                        <div class="text-lg font-bold"> 0 ريال</div>
+                                    </div>
+                                    <div class="flex flex-col  items-center mt-20">
+                                        <div class="text-lg"> اجمالي القيمة</div>
+                                        <div class="text-lg font-bold"> {{this.selectedFabric?.price}} ريال</div>
+                                    </div>
+                                </div>
+                                <div class="md:col-span-2 col-span-3  p-2 ">
+                                    <div class="flex flex-col  gap-4 border-r-2 border-gray-200 p-2">
+                                        @for(model of item.model ;track model){
+                                        <div class="flex items-center mb-4">
+                                            <input id="season" type="radio" [value]="model" name="season"
+                                                [(ngModel)]="selectedModel" (change)="applyModelFillter()"
+                                                class="w-4 h-4 text-gray-600 bg-gray-200 border-gray-300 focus:ring-gray-400">
+                                            <label for="season"
+                                                class="ms-2 text-lg font-medium text-gray-900 dark:text-gray-300">{{model}}</label>
+
+                                        </div>
+                                        }
+                                        <!-- {{selectedModel}} -->
+                                    </div>
+                                </div>
+
+                                <div class="md:col-span-6 col-span-8 p-2 ">
+                                    <div class="grid grid-cols-2 gap-8 ">
+                                        @for (item of filterdModels ; track $index) {
+                                        <div class="col-span-2  ">
+                                            <div class="">
+                                                <img [src]="item.image" alt="Example Image" class="px-6 lg:h-screen" />
+
+                                            </div>
+                                        </div>
+                                        }
+                                        <!-- {{selectedModel | json}} -->
+                                    </div>
+                                </div>
+                            </div>
+                            }
+                        </div>
+
+                    </div>
+                    <div class="rounded-full  border-4 border-black p-2 grid grid-cols-5 mx-10">
+                        <div class="col-span-3  flex justify-center items-center">
+                            <button mat-button matStepperNext>
+                                <div class="size-20 rounded-full bg-black flex justify-center items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"
+                                        class="size-14">
+                                        <path fill-rule="evenodd"
+                                            d="M13.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L11.69 12 4.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
+                                            clip-rule="evenodd" />
+                                        <path fill-rule="evenodd"
+                                            d="M19.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 1 1-1.06-1.06L17.69 12l-6.97-6.97a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </button>
+                            <button mat-button matStepperPrevious>
+                                <div class="size-20 rounded-full bg-black flex justify-center items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"
+                                        class="size-14">
+                                        <path fill-rule="evenodd"
+                                            d="M10.72 11.47a.75.75 0 0 0 0 1.06l7.5 7.5a.75.75 0 1 0 1.06-1.06L12.31 12l6.97-6.97a.75.75 0 0 0-1.06-1.06l-7.5 7.5Z"
+                                            clip-rule="evenodd" />
+                                        <path fill-rule="evenodd"
+                                            d="M4.72 11.47a.75.75 0 0 0 0 1.06l7.5 7.5a.75.75 0 1 0 1.06-1.06L6.31 12l6.97-6.97a.75.75 0 0 0-1.06-1.06l-7.5 7.5Z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </button>
+
+                        </div>
+                        <div class="col-span-2  flex justify-center cursor-pointer" routerLink="/">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                class="size-20">
+                                <path
+                                    d="M11.47 3.841a.75.75 0 0 1 1.06 0l8.69 8.69a.75.75 0 1 0 1.06-1.061l-8.689-8.69a2.25 2.25 0 0 0-3.182 0l-8.69 8.69a.75.75 0 1 0 1.061 1.06l8.69-8.689Z" />
+                                <path
+                                    d="m12 5.432 8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 0 1-.75-.75v-4.5a.75.75 0 0 0-.75-.75h-3a.75.75 0 0 0-.75.75V21a.75.75 0 0 1-.75.75H5.625a1.875 1.875 0 0 1-1.875-1.875v-6.198a2.29 2.29 0 0 0 .091-.086L12 5.432Z" />
+                            </svg>
+                        </div>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="firstFormGroup">
+                <form [formGroup]="neckForm">
+                    <div class="grid grid-cols-12 lg:p-20  mt-20 contain">
+                        <div class="col-span-12 ">
+                            <span class="ps-20  font-bold">اختر قماشك بنفسك في نظام فقيه الذكي</span>
+                            <h6 class="bg-gray-200 p-2 mt-10 ps-20">
+                                اختيار الطلبات
+                            </h6>
+                        </div>
+                        <div class="col-span-12">
+                            @for(item of filterData ;track item){
+                            <div class="grid grid-cols-11 mt-8 text-center">
+                                <div class="md:col-span-3 col-span-6 p-2  text-center">
+                                    <h3 class="font-semibold text-center">الرقبة</h3>
+                                    <div class="flex flex-col  items-center mt-20">
+                                        <div class="text-lg">قيمة الاضافة</div>
+                                        <div class="text-lg font-bold"> 0 ريال</div>
+                                    </div>
+                                    <div class="flex flex-col  items-center mt-20">
+                                        <div class="text-lg"> اجمالي القيمة</div>
+                                        <div class="text-lg font-bold"> {{this.selectedFabric?.price}} ريال</div>
+                                    </div>
+                                </div>
+                                <div class="md:col-span-2 col-span-5 p-2 ">
+                                    <div class="flex flex-col  gap-4 border-r-2 border-gray-200 p-2">
+                                        @for(neck of item.neck ;track neck){
+                                        <div class="flex items-center mb-4">
+                                            <input id="season" type="radio" [value]="neck" name="neckModel"
+                                                formControlName="neckModel"
+                                                class="w-4 h-4 text-gray-600 bg-gray-200 border-gray-300 focus:ring-gray-400">
+                                            <label for="season"
+                                                class="ms-2 text-lg font-medium text-gray-900 dark:text-gray-300">{{neck}}</label>
+
+                                        </div>
+                                        }
+                                        <!-- {{selectedNeck}} -->
+                                    </div>
+                                    <div class="flex flex-col  gap-4 border-r-2 border-gray-200 p-2 mt-20">
+                                        <h4>حشوة الرقبة</h4>
+                                        @for(neck of item.NeckPadding ;track neck){
+                                        <div class="flex items-center mb-4">
+                                            <input id="season" type="radio" [value]="neck" name="neckPadding"
+                                                formControlName="neckPadding"
+                                                class="w-4 h-4 text-gray-600 bg-gray-200 border-gray-300 focus:ring-gray-400">
+                                            <label for="season"
+                                                class="ms-2 text-lg font-medium text-gray-900 dark:text-gray-300">{{neck}}</label>
+
+                                        </div>
+                                        }
+                                    </div>
+                                    <div class="flex flex-col  gap-4 border-r-2 border-gray-200 p-2 mt-20">
+                                        <h4> الأزرة</h4>
+                                        @for(btn of item.buttons ;track btn){
+                                        <div class="flex items-center mb-4">
+                                            <input id="season" type="radio" [value]="btn" name="button"
+                                                formControlName="button"
+                                                class="w-4 h-4 text-gray-600 bg-gray-200 border-gray-300 focus:ring-gray-400">
+                                            <label for="season"
+                                                class="ms-2 text-lg font-medium text-gray-900 dark:text-gray-300">{{btn}}</label>
+                                        </div>
+                                        }
+                                    </div>
+                                </div>
+
+                                <div class="md:col-span-6 col-span-11 p-2 ">
+                                    <div class="grid grid-cols-2 gap-8 ">
+                                        @for (item of necks ; track $index) {
+                                        <div class="col-span-1 container ">
+                                            <div class="image-wrapper">
+                                                <img [src]="item.image" alt="Example Image" />
+                                                <input [value]="item" type="radio"
+                                                    class="radio-btn w-6 h-6  text-gray-600 bg-white border-gray-300 focus:ring-gray-400"
+                                                    name="selectedImage" />
+                                            </div>
+                                        </div>
+                                        }
+                                        <!-- {{selectedNeck | json}} -->
+                                        <!-- {{neckForm.value| json}} -->
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-8 mt-20">
+
+                                        <div class="col-span-1 container ">
+                                            <div class="image-wrapper">
+                                                <img src="/images/fabric/btns.jpg" alt="Example Image" />
+                                                <!-- <input formControlName="selectedImage"  [value]="item" type="radio"
+                                                    class="radio-btn w-6 h-6  text-gray-600 bg-white border-gray-300 focus:ring-gray-400"
+                                                    name="selectedImage" /> -->
+                                            </div>
+                                        </div>
+                                        <div class="col-span-1 container ">
+                                            <div class="image-wrapper">
+                                                <img src="/images/fabric/btns.jpg" alt="Example Image" />
+                                                <!-- <input formControlName="selectedImage"  [value]="item" type="radio"
+                                                                                            class="radio-btn w-6 h-6  text-gray-600 bg-white border-gray-300 focus:ring-gray-400"
+                                                                                            name="selectedImage" /> -->
+                                            </div>
+                                        </div>
+                                        <!-- {{selectedNeck | json}} -->
+                                        <!-- {{neckForm.value| json}} -->
+                                    </div>
+                                </div>
+                            </div>
+                            }
+                        </div>
+
+                    </div>
+                    <div class="rounded-full  border-4 border-black p-2 grid grid-cols-5 mx-10">
+                        <div class="col-span-3  flex justify-center items-center">
+                            <button mat-button matStepperNext>
+                                <div class="size-20 rounded-full bg-black flex justify-center items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"
+                                        class="size-14">
+                                        <path fill-rule="evenodd"
+                                            d="M13.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L11.69 12 4.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
+                                            clip-rule="evenodd" />
+                                        <path fill-rule="evenodd"
+                                            d="M19.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 1 1-1.06-1.06L17.69 12l-6.97-6.97a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </button>
+                            <button mat-button matStepperPrevious>
+                                <div class="size-20 rounded-full bg-black flex justify-center items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"
+                                        class="size-14">
+                                        <path fill-rule="evenodd"
+                                            d="M10.72 11.47a.75.75 0 0 0 0 1.06l7.5 7.5a.75.75 0 1 0 1.06-1.06L12.31 12l6.97-6.97a.75.75 0 0 0-1.06-1.06l-7.5 7.5Z"
+                                            clip-rule="evenodd" />
+                                        <path fill-rule="evenodd"
+                                            d="M4.72 11.47a.75.75 0 0 0 0 1.06l7.5 7.5a.75.75 0 1 0 1.06-1.06L6.31 12l6.97-6.97a.75.75 0 0 0-1.06-1.06l-7.5 7.5Z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </button>
+                        </div>
+                        <div class="col-span-2  flex justify-center cursor-pointer" routerLink="/">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                class="size-20">
+                                <path
+                                    d="M11.47 3.841a.75.75 0 0 1 1.06 0l8.69 8.69a.75.75 0 1 0 1.06-1.061l-8.689-8.69a2.25 2.25 0 0 0-3.182 0l-8.69 8.69a.75.75 0 1 0 1.061 1.06l8.69-8.689Z" />
+                                <path
+                                    d="m12 5.432 8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 0 1-.75-.75v-4.5a.75.75 0 0 0-.75-.75h-3a.75.75 0 0 0-.75.75V21a.75.75 0 0 1-.75.75H5.625a1.875 1.875 0 0 1-1.875-1.875v-6.198a2.29 2.29 0 0 0 .091-.086L12 5.432Z" />
+                            </svg>
+                        </div>
+                        <!-- <div class="col-span-1 flex justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-20" viewBox="0 0 24 24">
+                                <path d="M0 0h24v24H0z" fill="none" />
+                                <path
+                                    d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z" />
+                            </svg>
+                        </div> -->
+
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step>
+                <form [formGroup]="supplementsForm">
+                    <div class="grid grid-cols-12 lg:p-20  mt-20 contain">
+                        <div class="col-span-12 ">
+                            <span class="ps-20  font-bold">اختر قماشك بنفسك في نظام فقيه الذكي</span>
+                            <h6 class="bg-gray-200 p-2 mt-10 ps-20">
+                                اختيار الطلبات
+                            </h6>
+                        </div>
+                        <div class="col-span-12">
+                            @for(item of filterData ;track item){
+                            <div class="grid grid-cols-11 mt-8 text-center">
+                                <div class="md:col-span-3 col-span-6 p-2  text-center">
+                                    <h3 class="font-semibold text-center">الكم</h3>
+                                    <div class="flex flex-col  items-center mt-20">
+                                        <div class="text-lg">قيمة الاضافة</div>
+                                        <div class="text-lg font-bold"> 0 ريال</div>
+                                    </div>
+                                    <div class="flex flex-col  items-center mt-20">
+                                        <div class="text-lg"> اجمالي القيمة</div>
+                                        <div class="text-lg font-bold"> {{this.selectedFabric?.price}} ريال</div>
+                                    </div>
+                                </div>
+                                <div class="md:col-span-2 col-span-5 p-2 ">
+                                    <div class="flex flex-col  gap-4 border-r-2 border-gray-200 p-2">
+                                        <h3>حشوة الكم</h3>
+                                        @for(sleeve of item.SleevesPadding ;track sleeve){
+                                        <div class="flex items-center mb-4">
+                                            <input id="season" type="radio" [value]="sleeve" name="sleeve"
+                                                formControlName="sleeve"
+                                                class="w-4 h-4 text-gray-600 bg-gray-200 border-gray-300 focus:ring-gray-400">
+                                            <label for="season"
+                                                class="ms-2 text-lg font-medium text-gray-900 dark:text-gray-300">{{sleeve}}</label>
+
+                                        </div>
+                                        }
+                                        <!-- {{sleeve}} -->
+                                    </div>
+
+                                </div>
+                                <div class="md:col-span-6 col-span-11 p-2 ">
+                                    <div class="grid grid-cols-2 gap-8 ">
+                                        @for (item of sleeves ; track $index) {
+                                        <div class="col-span-1 container ">
+                                            <div class="image-wrapper">
+                                                <img [src]="item.image" alt="Example Image" />
+                                                <input [value]="item" type="radio"
+                                                    class="radio-btn w-6 h-6  text-gray-600 bg-white border-gray-300 focus:ring-gray-400"
+                                                    name="selectedImage" />
+                                            </div>
+                                        </div>
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-12 lg:p-20   contain">
+
+                        <div class="col-span-12">
+                            @for(item of filterData ;track item){
+                            <div class="grid grid-cols-11 mt-8 text-center">
+                                <div class="md:col-span-3 col-span-6 p-2  text-center">
+                                    <h3 class="font-semibold text-center">الجيب</h3>
+                                    <div class="flex flex-col  items-center mt-20">
+                                        <div class="text-lg">قيمة الاضافة</div>
+                                        <div class="text-lg font-bold"> 0 ريال</div>
+                                    </div>
+                                    <div class="flex flex-col  items-center mt-20">
+                                        <div class="text-lg"> اجمالي القيمة</div>
+                                        <div class="text-lg font-bold">{{this.selectedFabric?.price}} ريال</div>
+                                    </div>
+                                </div>
+                                <div class="md:col-span-2 col-span-5 p-2 ">
+                                    <div class="flex flex-col  gap-4 border-r-2 border-gray-200 p-2">
+                                        <h3>موديل القلم</h3>
+                                        @for(item of item.penModel ;track item){
+                                        <div class="flex items-center mb-4">
+                                            <input id="season" type="radio" [value]="item" name="penModel"
+                                                formControlName="penModel"
+                                                class="w-4 h-4 text-gray-600 bg-gray-200 border-gray-300 focus:ring-gray-400">
+                                            <label for="season"
+                                                class="ms-2 text-lg font-medium text-gray-900 dark:text-gray-300">{{item}}</label>
+
+                                        </div>
+                                        }
+                                        <!-- {{sleeve}} -->
+                                    </div>
+                                </div>
+                                <div class="md:col-span-6 col-span-11 p-2 ">
+                                    <div class="grid grid-cols-2 gap-8 ">
+                                        @for (item of penModels ; track $index) {
+                                        <div class="col-span-1 container ">
+                                            <div class="image-wrapper">
+                                                <img [src]="item.image" alt="Example Image" />
+                                                <input [value]="item" type="radio"
+                                                    class="radio-btn w-6 h-6  text-gray-600 bg-white border-gray-300 focus:ring-gray-400"
+                                                    name="selectedImage" />
+                                            </div>
+                                        </div>
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+                            }
+                        </div>
+
+                    </div>
+                    <div class="grid grid-cols-12 p-20 contain">
+
+                        <div class="col-span-12">
+                            @for(item of filterData ;track item){
+                            <div class="grid grid-cols-11 mt-8 text-center">
+                                <div class="md:col-span-3 col-span-6 p-2  text-center">
+                                    <h3 class="font-semibold text-center">الجبزور</h3>
+                                    <div class="flex flex-col  items-center mt-20">
+                                        <div class="text-lg">قيمة الاضافة</div>
+                                        <div class="text-lg font-bold"> 0 ريال</div>
+                                    </div>
+                                    <div class="flex flex-col  items-center mt-20">
+                                        <div class="text-lg"> اجمالي القيمة</div>
+                                        <div class="text-lg font-bold"> {{this.selectedFabric?.price}} ريال</div>
+                                    </div>
+                                </div>
+                                <div class="md:col-span-2 col-span-5 p-2 ">
+                                    <div class="flex flex-col  gap-4 border-r-2 border-gray-200 p-2">
+                                        @for(item of item.gypsumPadding ;track item){
+                                        <div class="flex items-center mb-4">
+                                            <input id="season" type="radio" [value]="item" name="gapzor"
+                                                formControlName="gapzor"
+                                                class="w-4 h-4 text-gray-600 bg-gray-200 border-gray-300 focus:ring-gray-400">
+                                            <label for="season"
+                                                class="ms-2 text-lg font-medium text-gray-900 dark:text-gray-300">{{item}}</label>
+
+                                        </div>
+                                        }
+                                        <!-- {{sleeve}} -->
+                                    </div>
+
+                                </div>
+                                <div class="md:col-span-6 col-span-11 p-2 ">
+                                    <div class="grid grid-cols-2 gap-8 ">
+                                        <div class="col-span-1 container ">
+                                            <div class="image-wrapper">
+                                                <img src="/images/fabric/gapsor.jpg" alt="Example Image" />
+                                                <!-- <input formControlName="selectedImage" [value]="item" type="radio"
+                                                    class="radio-btn w-6 h-6  text-gray-600 bg-white border-gray-300 focus:ring-gray-400"
+                                                    name="selectedImage" /> -->
+                                            </div>
+                                        </div>
+                                        <div class="col-span-1 container ">
+                                            <div class="image-wrapper">
+                                                <img src="/images/fabric/gapsor.jpg" alt="Example Image" />
+                                                <!-- <input formControlName="selectedImage" [value]="item" type="radio"
+                                                    class="radio-btn w-6 h-6  text-gray-600 bg-white border-gray-300 focus:ring-gray-400"
+                                                    name="selectedImage" /> -->
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            }
+                        </div>
+                        <!-- {{supplementsForm.value | json}} -->
+                    </div>
+
+                </form>
+                <div class="rounded-full  border-4 border-black p-2 grid grid-cols-5 mx-10">
+                    <div class="col-span-3  flex justify-center items-center">
+                        <button mat-button matStepperNext>
+                            <div class="size-20 rounded-full bg-black flex justify-center items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"
+                                    class="size-14">
+                                    <path fill-rule="evenodd"
+                                        d="M13.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L11.69 12 4.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
+                                        clip-rule="evenodd" />
+                                    <path fill-rule="evenodd"
+                                        d="M19.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 1 1-1.06-1.06L17.69 12l-6.97-6.97a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                        </button>
+                        <button mat-button matStepperPrevious>
+                            <div class="size-20 rounded-full bg-black flex justify-center items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"
+                                    class="size-14">
+                                    <path fill-rule="evenodd"
+                                        d="M10.72 11.47a.75.75 0 0 0 0 1.06l7.5 7.5a.75.75 0 1 0 1.06-1.06L12.31 12l6.97-6.97a.75.75 0 0 0-1.06-1.06l-7.5 7.5Z"
+                                        clip-rule="evenodd" />
+                                    <path fill-rule="evenodd"
+                                        d="M4.72 11.47a.75.75 0 0 0 0 1.06l7.5 7.5a.75.75 0 1 0 1.06-1.06L6.31 12l6.97-6.97a.75.75 0 0 0-1.06-1.06l-7.5 7.5Z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="col-span-2 flex justify-center cursor-pointer" routerLink="/" >
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-20">
+                            <path
+                                d="M11.47 3.841a.75.75 0 0 1 1.06 0l8.69 8.69a.75.75 0 1 0 1.06-1.061l-8.689-8.69a2.25 2.25 0 0 0-3.182 0l-8.69 8.69a.75.75 0 1 0 1.061 1.06l8.69-8.689Z" />
+                            <path
+                                d="m12 5.432 8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 0 1-.75-.75v-4.5a.75.75 0 0 0-.75-.75h-3a.75.75 0 0 0-.75.75V21a.75.75 0 0 1-.75.75H5.625a1.875 1.875 0 0 1-1.875-1.875v-6.198a2.29 2.29 0 0 0 .091-.086L12 5.432Z" />
+                        </svg>
+                    </div>
+                   
+
+                </div>
+            </mat-step>
+            <mat-step>
+                <div class="">
+                    <div class="flex items-center justify-center m-auto min-h-screen ">
+                        <form [formGroup]="userForm" class="w-full max-w-md bg-white p-6 shadow-lg rounded-lg">
+                            <!-- Name Field -->
+                            <div class="mb-4">
+                                <label for="name" class="block text-gray-700 font-medium mb-2">الاسم <span
+                                        class="text-red-500">*</span></label>
+                                <input id="name" type="text" formControlName="name"
+                                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2"
+                                    [ngClass]="{'border-red-500': userForm.get('name')?.invalid && userForm.get('name')?.touched}" />
+
+                                <div *ngIf="userForm.get('name')?.invalid && userForm.get('name')?.touched"
+                                    class="text-red-500 text-sm mt-1">
+                                    <span *ngIf="userForm.get('name')?.errors?.['required']">الاسم مطلوب</span>
+                                </div>
+                            </div>
+
+                            <!-- Mobile Field -->
+                            <div class="mb-4">
+                                <label for="mobile" class="block text-gray-700 font-medium mb-2">رقم الجوال <span
+                                        class="text-red-500">*</span></label>
+                                <input id="mobile" type="tel" formControlName="mobile"
+                                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2"
+                                    [ngClass]="{'border-red-500': userForm.get('mobile')?.invalid && userForm.get('mobile')?.touched}" />
+
+                                <div *ngIf="userForm.get('mobile')?.invalid && userForm.get('mobile')?.touched"
+                                    class="text-red-500 text-sm mt-1">
+                                    <span *ngIf="userForm.get('mobile')?.errors?.['required']">رقم الجوال مطلوب</span>
+                                    <span *ngIf="userForm.get('mobile')?.errors?.['pattern']">رقم الجوال غير صحيح</span>
+                                </div>
+                            </div>
+
+                            <!-- Address Field -->
+                            <div class="mb-4">
+                                <label for="address" class="block text-gray-700 font-medium mb-2">العنوان <span
+                                        class="text-red-500">*</span></label>
+                                <textarea id="address" formControlName="address" rows="3"
+                                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2"
+                                    [ngClass]="{'border-red-500': userForm.get('address')?.invalid && userForm.get('address')?.touched}"></textarea>
+
+                                <div *ngIf="userForm.get('address')?.invalid && userForm.get('address')?.touched"
+                                    class="text-red-500 text-sm mt-1">
+                                    <span *ngIf="userForm.get('address')?.errors?.['required']">العنوان مطلوب</span>
+                                </div>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <!-- <button matStepperNext type="submit"
+                                class="w-full text-center bg-black text-white py-2 px-4 rounded-lg hover:bg-[#B97500] transition duration-300"
+                                [disabled]="userForm.invalid">
+                                حفظ
+                            </button> -->
+
+                        </form>
+
+                    </div>
+                    <div class="rounded-full  border-4 border-black p-2 grid grid-cols-5 mx-10">
+                        <div class="col-span-3  flex justify-center items-center">
+                            <button mat-button matStepperNext>
+                                <div class="size-20 rounded-full bg-black flex justify-center items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"
+                                        class="size-14">
+                                        <path fill-rule="evenodd"
+                                            d="M13.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L11.69 12 4.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
+                                            clip-rule="evenodd" />
+                                        <path fill-rule="evenodd"
+                                            d="M19.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 1 1-1.06-1.06L17.69 12l-6.97-6.97a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </button>
+                            <button mat-button matStepperPrevious>
+                                <div class="size-20 rounded-full bg-black flex justify-center items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"
+                                        class="size-14">
+                                        <path fill-rule="evenodd"
+                                            d="M10.72 11.47a.75.75 0 0 0 0 1.06l7.5 7.5a.75.75 0 1 0 1.06-1.06L12.31 12l6.97-6.97a.75.75 0 0 0-1.06-1.06l-7.5 7.5Z"
+                                            clip-rule="evenodd" />
+                                        <path fill-rule="evenodd"
+                                            d="M4.72 11.47a.75.75 0 0 0 0 1.06l7.5 7.5a.75.75 0 1 0 1.06-1.06L6.31 12l6.97-6.97a.75.75 0 0 0-1.06-1.06l-7.5 7.5Z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </button>
+                        </div>
+                        <button class="col-span-1 flex justify-center  cursor-pointer"  [disabled]="userForm.invalid" (click)="addOrder()">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-20" viewBox="0 0 24 24">
+                                <path d="M0 0h24v24H0z" fill="none" />
+                                <path
+                                    d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z" />
+                            </svg>
+                        </button>
+                        <div class="col-span-1  flex justify-center  cursor-pointer" routerLink="/">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                class="size-20">
+                                <path
+                                    d="M11.47 3.841a.75.75 0 0 1 1.06 0l8.69 8.69a.75.75 0 1 0 1.06-1.061l-8.689-8.69a2.25 2.25 0 0 0-3.182 0l-8.69 8.69a.75.75 0 1 0 1.061 1.06l8.69-8.689Z" />
+                                <path
+                                    d="m12 5.432 8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 0 1-.75-.75v-4.5a.75.75 0 0 0-.75-.75h-3a.75.75 0 0 0-.75.75V21a.75.75 0 0 1-.75.75H5.625a1.875 1.875 0 0 1-1.875-1.875v-6.198a2.29 2.29 0 0 0 .091-.086L12 5.432Z" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </mat-step>
+        </mat-stepper>
+    </div>
+</div>

@@ -1,0 +1,74 @@
+<div class="p-4 flex justify-center items-center min-h-screen bg-gray-100">
+    <div class="w-full max-w-5xl bg-white p-6 rounded-lg shadow-lg">
+
+        <!-- User Details Section -->
+        <h4 class="text-lg font-semibold text-gray-800 mb-4">تفاصيل المستخدم</h4>
+        <p-table [value]="[data]" class="mb-6">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>الاسم</th>
+                    <th>رقم الجوال</th>
+                    <th>العنوان</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-user>
+                <tr>
+                    <td>{{ user?.user_name }}</td>
+                    <td>{{ user?.user_mobile }}</td>
+                    <td>{{ user?.user_address }}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+
+        <!-- Order Details Section -->
+        <h4 class="text-xl font-semibold text-gray-800 mb-4">تفاصيل الطلب</h4>
+        <p-table [value]="[data]">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>الموسم</th>
+                    <th>اللون</th>
+                    <th>الوصف</th>
+                    <th>السعر</th>
+                    <th>الموديل</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-order>
+                <tr>
+                    <td>{{ order.fabric_season }}</td>
+                    <td>{{ order.fabric_color }}</td>
+                    <td>{{ order.fabric_description }}</td>
+                    <td>{{ order.price }} ريال</td>
+                    <td>{{ order.model }}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+
+        <!-- Additional Order Details -->
+        <div class="mt-6 grid grid-cols-2 gap-4 text-black">
+            <div class="mt-6 grid grid-cols-1 gap-4">
+                <div class="p-4 bg-gray-200 rounded-lg">
+                    <strong>الرقبة:</strong> {{ data?.neck_model }} - {{ data?.neck_padding }}
+                </div>
+                <div class="p-4 bg-gray-200 rounded-lg">
+                    <strong>الأزرار:</strong> {{ data?.buttons }}
+                </div>
+                <div class="p-4 bg-gray-200 rounded-lg">
+                    <strong>حشوة الأكمام:</strong> {{ data?.sleeves_padding }}
+                </div>
+                <div class="p-4 bg-gray-200 rounded-lg">
+                    <strong>موديل القلم:</strong> {{ data?.pen_model }}
+                </div>
+                <div class="p-4 bg-gray-200 rounded-lg">
+                    <strong>حشوة الجبزور:</strong> {{ data?.gapzor_padding }}
+                </div>
+            </div>
+            <!-- Fabric Image -->
+            <div class="mt-6 flex justify-center ">
+                <img [src]="data?.fabric_image" alt="Fabric Image" class="rounded-lg shadow-md">
+            </div>
+        </div>
+
+
+
+    </div>
+</div>

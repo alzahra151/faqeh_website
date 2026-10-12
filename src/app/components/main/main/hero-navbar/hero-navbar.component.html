@@ -1,0 +1,62 @@
+<nav class="hero-navbar">
+    @if(navImageUrl){
+    <img [src]="navImageUrl" alt="Navbar Background" class="navbar-image" />
+    }@else {
+    <span class="no-image-sign"></span>
+    }
+
+
+    <div class="nav-content">
+        <mat-sidenav-container>
+            <mat-sidenav position="end" #sidenav mode="over">
+                <div class="flex items-center justify-between">
+                    <span class="cursor-pointer text-2xl  text-white " (click)="clickHandler()">x</span>
+                    <img class="lg:h-20	 lg:w-28 h-11 w-20" src="/images/Pic4.png">
+                </div>
+                <hr />
+                <nav>
+                    <a routerLink="home" (click)="clickHandler()" routerLinkActive="active">الرئيسية</a>
+                    <a routerLink="about" (click)="clickHandler()" routerLinkActive="active">من نحن </a>
+                    <a routerLink="login" (click)="clickHandler()" routerLinkActive="active">المنتجات</a>
+                    <a routerLink="sign-up" (click)="clickHandler()" routerLinkActive="active">العروض</a>
+                    <a routerLink="contact" (click)="clickHandler()" routerLinkActive="active">تواصل معنا</a>
+                </nav>
+            </mat-sidenav>
+            <mat-sidenav-content>
+                <mat-toolbar color="primary">
+                    <header>
+                        <nav class="mr-10">
+                            <button class="contactBtn px-6 py-1 text-2xl text-white">تواصل معنا </button>
+                            <a routerLink="sign-up" routerLinkActive="active">العروض </a>
+                            <a routerLink="login" routerLinkActive="active">المنتجات </a>
+                            <a routerLink="about" routerLinkActive="active">من نحن </a>
+                            <a routerLink="home" routerLinkActive="active">الرئيسية</a>
+                            <!-- <a routerLink="contact" routerLinkActive="active">Contact</a> -->
+
+                        </nav>
+                        <img class="lg:h-20	 lg:w-32 h-12 w-16 me-20" src="/images/Pic42.png">
+                        <svg (click)="sidenav.toggle()" class="size-6 menu-icon" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 12H20M4 8H20M4 16H12" stroke="white" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+
+                    </header>
+                </mat-toolbar>
+                <section class="">
+                    <!-- <div class="  content text-gray-400">
+                        <h1 class="lg:text-4xl  lg:font-extrabold  text-base flex items-center lg:justify-between ">
+                            <span class="me-3"> 70 </span> <span>عاما من الابداع</span>
+                        </h1>
+                        <p class="lg:text-lg lg:max-w-md text-sm text-white">
+                            من تراثنا السعودي حيث تتجسد الأناقة .. نحن
+                            ومع كل خيط نغزل لكم قصًة كل يوم
+                        </p>
+                        <button class="contactBtn lg:mt-8 px-12 py-2 text-xl md:block hidden"> تعرف أكثر  </button>
+                    </div> -->
+                    <router-outlet></router-outlet>
+                </section>
+            </mat-sidenav-content>
+        </mat-sidenav-container>
+    </div>
+</nav>
